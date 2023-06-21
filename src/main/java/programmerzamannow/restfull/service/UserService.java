@@ -3,14 +3,15 @@ package programmerzamannow.restfull.service;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import jakarta.transaction.Transactional;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
 import jakarta.validation.Validator;
 import programmerzamannow.restfull.entity.User;
-import programmerzamannow.restfull.exception.ApiException;
 import programmerzamannow.restfull.model.RegisterUserRequest;
 import programmerzamannow.restfull.repository.UserRepository;
 import programmerzamannow.restfull.security.BCrypt;
@@ -32,7 +33,7 @@ public class UserService {
         }
 
         if (userRepository.existsById(registerUserRequest.getUsername())) {
-            throw new ApiException("Username Already register");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Username Already register");
 
         }
 
