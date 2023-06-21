@@ -101,7 +101,7 @@ Request Body :
 
 ```json
 {
-  "name": "Eko Wahyu", // put if only want to update name
+  "name": "Wahyu Hidayat", // put if only want to update name
   "password": "new password" // put if only want to update password
 }
 ```
