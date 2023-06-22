@@ -8,6 +8,8 @@ import org.springframework.web.server.ResponseStatusException;
 import jakarta.transaction.Transactional;
 import programmerzamannow.restfull.entity.User;
 import programmerzamannow.restfull.model.RegisterUserRequest;
+import programmerzamannow.restfull.model.UserResponse;
+import programmerzamannow.restfull.model.WebResponse;
 import programmerzamannow.restfull.repository.UserRepository;
 import programmerzamannow.restfull.security.BCrypt;
 
@@ -35,6 +37,13 @@ public class UserService {
         user.setPassword(BCrypt.hashpw(registerUserRequest.getPassword(), BCrypt.gensalt()));
         user.setName(registerUserRequest.getName());
         userRepository.save(user);
+    }
+
+    public UserResponse get(User user) {
+        return UserResponse.builder()
+                .username(user.getUsername())
+                .name(user.getName())
+                .build();
     }
 
 }

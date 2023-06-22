@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import programmerzamannow.restfull.entity.User;
 import programmerzamannow.restfull.model.RegisterUserRequest;
+import programmerzamannow.restfull.model.UserResponse;
 import programmerzamannow.restfull.model.WebResponse;
 import programmerzamannow.restfull.service.UserService;
 
@@ -20,14 +22,11 @@ public class UserController {
         return WebResponse.<String>builder().data("OK").build();
     }
 
-    // @GetMapping(
-    // path = "/api/users/current",
-    // produces = MediaType.APPLICATION_JSON_VALUE
-    // )
-    // public WebResponse<UserResponse> get(User user) {
-    // UserResponse userResponse = userService.get(user);
-    // return WebResponse.<UserResponse>builder().data(userResponse).build();
-    // }
+    @GetMapping(path = "/api/users/current", produces = MediaType.APPLICATION_JSON_VALUE)
+    public WebResponse<UserResponse> get(User user) {
+        UserResponse userResponse = userService.get(user);
+        return WebResponse.<UserResponse>builder().data(userResponse).build();
+    }
 
     // @PatchMapping(
     // path = "/api/users/current",
